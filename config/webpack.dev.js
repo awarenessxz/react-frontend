@@ -9,6 +9,13 @@ const buildDevelopmentConfig = baseConfig => {
     const devServerPublicPath = app.devServer.publicPath;
     console.log(devServerPublicPath);
 
+    /*
+    devServerProxy[app.devServer.contextPath + devServerProxyDetails.url] = {
+        target: devServerProxyDetails.target,
+        secure: devServerProxyDetails.secure,
+        prependPath: devServerProxyDetails.prependPath
+    };*/
+
     return merge([
         baseConfig,
         {
