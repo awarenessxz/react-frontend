@@ -1,3 +1,4 @@
+const { HotModuleReplacementPlugin } = require("webpack");
 const { merge } = require("webpack-merge");
 const app = require('./wp-config-app');
 const util = require('./wp-config-util');
@@ -23,6 +24,9 @@ const buildDevelopmentConfig = baseConfig => {
             resolve: {
                 symlinks: false // for yarn link to work
             },
+            output: {
+                devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
+            },
             devServer: {
                 historyApiFallback: true,
                 stats: 'errors-only',
@@ -36,7 +40,11 @@ const buildDevelopmentConfig = baseConfig => {
                     errors: true,
                     warnings: true
                 }
-            }
+            },
+            optimization: {
+                namedModules: true
+            },
+            plugins: [new HotModuleReplacementPlugin()]
         },
         util.generateSourceMap({ type: 'cheap-module-source-map' }),
         util.loadCSS(false)

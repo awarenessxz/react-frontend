@@ -1,5 +1,7 @@
 // external plugins
 const chalk = require('chalk');
+const { merge } = require("webpack-merge");
+const util = require('./config/wp-config-util');
 
 // internal configuration
 const commonConfig = require('./config/webpack.common');
@@ -16,6 +18,8 @@ module.exports = env => {
             return prodConfig(commonConfig);
         case "start":
             return devConfig(commonConfig);
+        case "stats":
+            return merge([commonConfig, util.generateSourceMap({ type : "eval-source-map" })]);
         default:
             throw new Error("Invalid npm script!");
     }

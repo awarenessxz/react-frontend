@@ -4,8 +4,10 @@
   "description": "Simple React Web Application Template",
   "main": "src/index.js",
   "scripts": {
+    "analyze": "webpack-bundle-analyzer --port 4200 stats.json",
     "build": "webpack --env production",
     "start": "webpack-dev-server --open --env development",
+    "stats": "webpack --env production --mode production --profile --json | sed '1,2d' > stats.json && yarn run analyze",
     "lint:js": "eslint **/*.{js,jsx} --quiet",
     "lint:js-fix": "yarn lint:js -- --fix"
   },
@@ -22,6 +24,9 @@
   "homepage": "https://github.com/awarenessxz/react-frontend#readme",
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "autoprefixer": "^10.0.0",
@@ -48,6 +53,7 @@
     "style-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.4"

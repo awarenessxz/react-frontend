@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // generates an HTML file, injects the script inside the HTML file and writes this file to dist/index.html
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // for analyzing bundle size
 const { merge } = require("webpack-merge");
 const app = require('./wp-config-app');
 const util = require('./wp-config-util');
@@ -24,6 +25,13 @@ module.exports = merge([
                 title: app.title,
                 template: `${app.paths.src}/index.html`,
                 hash: true,
+            }),
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'disabled',
+                generateStatsFile: true,
+                statsOptions: {
+                    source: false
+                }
             })
         ],
     },
@@ -36,5 +44,6 @@ module.exports = merge([
             emitWarning: true,
             failOnError: true,
         }
-    })
+    }),
+    util.extractBundle()
 ]);

@@ -138,6 +138,29 @@ module.exports = {
             plugins: [new CleanWebpackPlugin()] // it will remove files specified in webpack's output path
         }
     },
+    // code-splitting
+    extractBundle: () => ({
+        optimization: {
+            runtimeChunk: {
+                name: 'manifest'
+            },
+            splitChunks: {
+                // assigns all modules from node_modules into cache_group and extract out common chunks into vendor.js
+                cacheGroups: {
+                    vendors: {
+                        test: '/[\\/]node_modules[\\/]/',
+                        name: 'node_vendor',
+                        chunks: 'all'
+                    },
+                    common: {
+                        test: '/[\\/]src[\\/]components[\\/]/',
+                        chunks: 'all',
+                        minSize: 0
+                    }
+                }
+            }
+        }
+    }),
     generateSourceMap: ({type}) => ({
         devtool: type
     })
