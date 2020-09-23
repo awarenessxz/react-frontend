@@ -14,7 +14,7 @@ module.exports = merge([
             alias: {
                 'react-dom': '@hot-loader/react-dom'
             },
-            extensions: ['.js', '.jsx']
+            extensions: ['.tsx', '.ts', ".js"]
         },
         output: {
             path: app.paths.build,

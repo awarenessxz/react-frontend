@@ -7,7 +7,7 @@ import App from "./components/core/App";
 import store from './redux/redux-store';
 
 const reduxStore = store();
-const render = AppComponent => {
+const render = (AppComponent: React.FC) => {
     ReactDOM.render(
         <HotReloader>
             <Provider store={reduxStore}>

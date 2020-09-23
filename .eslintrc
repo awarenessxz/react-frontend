@@ -6,17 +6,62 @@
     "node": true,
     "jest": true
   },
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
   "parserOptions": {
-    "ecmaVersion": 2016,
+    "ecmaVersion": 2020, // Allows the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Allows for parsing of JSX
+    },
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    }
+  },
+  "extends": [
+    "airbnb-typescript",
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
+    "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESlint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESlint errors. Make sure this is always the last configuration in the extends array
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    // place to sepcify ESlint rules
+    //"react-hooks/rules-of-hooks": "error",
+    //"react-hooks/exhaustive-deps": "warn",
+    //"react/prop-types": "off"
+    //"no-unused-vars": "off",
+    //"@typescript-eslint/no-unused-vars": "error",
+    //"no-useless-constructor": "off",
+    //"@typescript-eslint/no-useless-constructor": "error"
+  }
+}
+/*
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [],
+  "plugins": ["prettier", "@typescript-eslint", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
   "rules": {
-    
-  }
-}
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+  },
+}*/

@@ -1,9 +1,10 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from "redux-thunk";
-import rootReducer from './root-reducer';
+import { ApplicationState, rootReducer } from './root-reducer';
 
-const configureProdStore = initialState => {
+const configureProdStore = (initialState? : ApplicationState) => {
     const middlewares = [
         // Add other middleware on this line...
         thunkMiddleware
@@ -11,7 +12,7 @@ const configureProdStore = initialState => {
     return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 };
 
-const configureDevStore = initialState => {
+const configureDevStore = (initialState?: ApplicationState) => {
     const middlewares = [
         // Add other middleware on this line...
         reduxImmutableStateInvariant(), // redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches
@@ -21,11 +22,11 @@ const configureDevStore = initialState => {
         thunkMiddleware
     ];
 
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const composeEnhancers = composeWithDevTools({}); // typescript shortcut for window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
     if (module.hot) {
-        module.hot.accept('../redux/root-reducer.js', () => {
+        module.hot.accept('../redux/root-reducer.ts', () => {
             const nextReducer = require('./root-reducer');
             store.replaceReducer(nextReducer);
         });

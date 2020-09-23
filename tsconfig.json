@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    // standard typing to be included in the type checking process
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // allow javascript files to be compiled
+    "allowJs": true,
+    // allows default imports from modules with no default export in the type checking process
+    "allowSyntheticDefaultImports": true,
+    // skip type checking of all the type declaration files (*.d.ts)
+    "skipLibCheck": true,
+    // enables compatibility with Babel
+    "esModuleInterop": true,
+    // set level of type checking to very high
+    "strict": true,
+    // ensures that the casing of referenced file names is consistent during the type checking process
+    "forceConsistentCasingInFileNames": true,
+    // how module dependencies get resolved, which is node for our project
+    "moduleResolution": "node",
+    // allows modules to be in .json files which are useful for configuration files
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    // suppress typescript generating code during compilation process. Because babel will be generating the javascript code
+    "noEmit": true,
+    // support JSX in .tsx files
+    "jsx": "react"
+  },
+  // files and folders for typescript to check
+  "include": ["src"]
+}
