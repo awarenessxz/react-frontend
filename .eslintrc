@@ -19,49 +19,56 @@
     "react": {
       "pragma": "React",
       "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-    }
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src/"],
+        "extensions": [".ts", ".tsx"]
+      },
+      "webpack": {}
+    },
+    "import/extensions": [".ts", ".tsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/core-modules": [],
+    "import/ignore": ["node_modules", "\\.(coffee|scss|css|less|hbs|svg|json)$"]
   },
   "extends": [
-    "airbnb-typescript",
+    "airbnb-typescript/base",
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "plugin:react-hooks/recommended", // Uses the recommended rules from eslint-config-react-hooks
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
+    "plugin:@typescript-eslint/recommended-requiring-type-checking", // contains rules that specifically require type information.
     "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESlint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESlint errors. Make sure this is always the last configuration in the extends array
   ],
   "plugins": ["@typescript-eslint"],
   "rules": {
     // place to sepcify ESlint rules
-    //"react-hooks/rules-of-hooks": "error",
-    //"react-hooks/exhaustive-deps": "warn",
-    //"react/prop-types": "off"
-    //"no-unused-vars": "off",
-    //"@typescript-eslint/no-unused-vars": "error",
-    //"no-useless-constructor": "off",
-    //"@typescript-eslint/no-useless-constructor": "error"
+    "react/jsx-filename-extension": [1, {"extensions":  [".tsx", "jsx"]}], // drops extensions checks for JSX in javascript project
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
+    "react-hooks/rules-of-hooks": "error", // checks rules of hooks
+    "react-hooks/exhaustive-deps": "error", // checks effect dependencies
+    "jsx-a11y/no-static-element-interactions": "off", // See ARIA rules. However, severity decreased from error->warn instead
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/anchor-is-valid": "off", // turned off due to bootstrap usage?
+    // Assume user without physical disabilities. If required, then we need to enable key events and enable the follow rules
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/mouse-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "import/extensions": ["error", "ignorePackages", {"ts": "never", "tsx": "never"}], // do not require extensions for imports
+    "semi": ["error", "always"],
+    "no-underscore-dangle": "off",
+    "no-console": "off",
+    "linebreak-style": "off",
+    "no-unused-vars": "error",
+    "no-param-reassign": "error",
+    "no-empty-function": "off",
+    "@typescript-eslint/explicit-function-return-type": "warn", // TODO remove this lint?
+    "@typescript-eslint/no-unused-vars": ["error", {"varsIgnorePattern":  "^_"}],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-unused-expressions": "error"
   }
 }
-/*
-{
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true,
-    "jest": true
-  },
-  "extends": [],
-  "plugins": ["prettier", "@typescript-eslint", "react-hooks"],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/prop-types": "off",
-  },
-}*/

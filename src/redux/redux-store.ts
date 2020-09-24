@@ -1,13 +1,13 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
 import { ApplicationState, rootReducer } from './root-reducer';
 
-const configureProdStore = (initialState? : ApplicationState) => {
+const configureProdStore = (initialState?: ApplicationState) => {
     const middlewares = [
         // Add other middleware on this line...
-        thunkMiddleware
+        thunkMiddleware,
     ];
     return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 };
@@ -19,7 +19,7 @@ const configureDevStore = (initialState?: ApplicationState) => {
 
         // thunk middleware can also accept an extra argument to be passed to each thunk action
         // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-        thunkMiddleware
+        thunkMiddleware,
     ];
 
     const composeEnhancers = composeWithDevTools({}); // typescript shortcut for window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

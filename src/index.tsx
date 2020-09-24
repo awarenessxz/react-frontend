@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 import { AppContainer as HotReloader } from 'react-hot-loader';
-import App from "./components/core/App";
+import App from './components/core/App';
 
 import store from './redux/redux-store';
 
@@ -14,7 +14,7 @@ const render = (AppComponent: React.FC) => {
                 <AppComponent />
             </Provider>
         </HotReloader>,
-        document.getElementById('app')
+        document.getElementById('app'),
     );
 };
 
