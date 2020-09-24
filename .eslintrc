@@ -53,21 +53,28 @@
     "jsx-a11y/no-static-element-interactions": "off", // See ARIA rules. However, severity decreased from error->warn instead
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/anchor-is-valid": "off", // turned off due to bootstrap usage?
+    "jsx-a11y/anchor-is-valid": "off",
     // Assume user without physical disabilities. If required, then we need to enable key events and enable the follow rules
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/mouse-events-have-key-events": "off",
     "jsx-a11y/interactive-supports-focus": "off",
     "import/extensions": ["error", "ignorePackages", {"ts": "never", "tsx": "never"}], // do not require extensions for imports
-    "semi": ["error", "always"],
+    // eslint
     "no-underscore-dangle": "off",
     "no-console": "off",
     "linebreak-style": "off",
-    "no-unused-vars": "error",
     "no-param-reassign": "error",
     "no-empty-function": "off",
-    "@typescript-eslint/explicit-function-return-type": "warn", // TODO remove this lint?
-    "@typescript-eslint/no-unused-vars": ["error", {"varsIgnorePattern":  "^_"}],
+    // typescript rules
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-extra-semi": "off",
+    "@typescript-eslint/no-extra-semi": ["error"],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error", "always"],
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-unused-expressions": "error"
   }

@@ -27,8 +27,7 @@ const configureDevStore = (initialState?: ApplicationState) => {
 
     if (module.hot) {
         module.hot.accept('../redux/root-reducer.ts', () => {
-            const nextReducer = require('./root-reducer');
-            store.replaceReducer(nextReducer);
+            store.replaceReducer(rootReducer);
         });
     }
 
